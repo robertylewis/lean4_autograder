@@ -4,6 +4,6 @@ set -ex
 
 cd /autograder/source
 
-git pull origin
+git pull origin master
 
 ./run_autograder_main
