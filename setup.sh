@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-AUTOGRADER_REPO="https://github.com/robertylewis/hw1_autograder"
+apt-get install -y jq
+
+AUTOGRADER_REPO=$(jq -r '.autograder_repo' < config.json)
 
 curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain leanprover/lean4:nightly-2023-01-16
 
@@ -13,7 +15,7 @@ apt-get install -y python3 python3-pip python3-dev
 cd /autograder/source
 
 git init 
-git remote add origin $AUTOGRADER_REPO
+git remote add origin https://github.com/$AUTOGRADER_REPO
 git fetch origin 
 git reset --hard origin/master
 
@@ -23,4 +25,4 @@ git reset --hard origin/master
 
 # ~/.elan/bin/lake clean
 
-# ~/.elan/bin/lake build autograder AutograderTests 
+~/.elan/bin/lake build autograder AutograderTests 

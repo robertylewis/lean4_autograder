@@ -6,6 +6,8 @@ cd /autograder/source
 
 git pull
 
+cp config.json autograder_config.json
+
 cp /autograder/submission/* /autograder/source/Assignment.lean
 
 # cd PythonScripts
