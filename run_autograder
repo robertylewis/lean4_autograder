@@ -4,20 +4,6 @@ set -ex
 
 cd /autograder/source
 
-git pull
+git pull origin
 
-cp config.json autograder_config.json
-
-cp /autograder/submission/* /autograder/source/Assignment.lean
-
-# cd PythonScripts
-
-# python3 get_template_from_github.py
-
-# cd ..
-
-~/.elan/bin/lake exe cache get 
-
-~/.elan/bin/lake build autograder AutograderTests 
-
-~/.elan/bin/lake exe autograder AutograderTests.Solution Assignment.lean
+./run_autograder_main
