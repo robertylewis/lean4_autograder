@@ -1,5 +1,5 @@
 {
-    "public_repo": "hrmacbeth/autograder_test_instructor",
-    "assignment_path": "ProblemSets/ProblemSet1.lean",
-    "autograder_repo": "robertylewis/hw1_autograder"
+    "public_repo": "robertylewis/leanclass",
+    "assignment_path": "BrownCs22/Exercises/submission.lean",
+    "autograder_repo": "robertylewis/leanclass"
 }
