@@ -6,4 +6,6 @@ cd /autograder/source
 
 git pull origin master
 
+cp lake-packages/autograder/run_autograder_main .
+
 ./run_autograder_main
