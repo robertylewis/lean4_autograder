@@ -19,7 +19,7 @@ echo "looking for: $AUTOGRADER_REPO"
 git init 
 git remote add origin "https://github.com/$AUTOGRADER_REPO"
 git fetch origin 
-git reset --hard origin/master
+git reset --hard origin/main
 
 # ~/.elan/bin/lake update 
 

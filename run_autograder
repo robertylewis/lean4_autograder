@@ -4,7 +4,7 @@ set -ex
 
 cd /autograder/source
 
-git pull origin master
+git pull origin main
 
 # The following line is needed for this reason:
 # we have just pulled a new version of the course project,
