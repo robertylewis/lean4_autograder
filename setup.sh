@@ -19,7 +19,8 @@ echo "looking for: $AUTOGRADER_REPO"
 git init 
 git remote add origin "https://github.com/$AUTOGRADER_REPO"
 git fetch origin 
-git reset --hard origin/master
+MAIN_BRANCH=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+git reset --hard origin/$MAIN_BRANCH
 
 # ~/.elan/bin/lake update 
 
