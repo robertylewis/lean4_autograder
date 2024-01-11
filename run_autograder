@@ -18,6 +18,6 @@ git pull origin $MAIN_BRANCH
 
 ~/.elan/bin/lake update
 
-cp lake-packages/autograder/run_autograder_main .
+cp .lake/packages/autograder/run_autograder_main .
 
 ./run_autograder_main
