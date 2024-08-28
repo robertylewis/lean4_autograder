@@ -16,9 +16,9 @@ AUTOGRADER_REPO=$(jq -r '.autograder_repo' < config.json)
 
 AUTOGRADER_REPO_KEY=$(jq -r '.deploy_token_private_key' < config.json)
 
-if [[ "$AUTOGRADER_REPO_KEY" != "null" ]]; then
+if [[ -e ./autograder_deploy_key ]]; then
 mkdir -p ~/.ssh
-echo "$AUTOGRADER_REPO_KEY" > ~/.ssh/autograder_deploy_key
+mv autograder_deploy_key ~/.ssh/autograder_deploy_key
 chmod 600 ~/.ssh/autograder_deploy_key
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/assignments_deploy_key

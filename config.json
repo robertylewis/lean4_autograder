@@ -1,6 +1,4 @@
 {
-    "public_repo": "robertylewis/leanclass",
     "assignment_path": "BrownCs22/Exercises/submission.lean",
-    "autograder_repo": "robertylewis/leanclass",
-    "deploy_token_private_key": "abc"
+    "autograder_repo": "robertylewis/leanclass"
 }
