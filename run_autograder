@@ -4,6 +4,9 @@ set -ex
 
 cd /autograder/source
 
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/autograder_deploy_key
+
 MAIN_BRANCH=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
 
 git pull origin $MAIN_BRANCH
