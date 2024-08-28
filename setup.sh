@@ -14,6 +14,23 @@ cd /autograder/source
 
 AUTOGRADER_REPO=$(jq -r '.autograder_repo' < config.json)
 
+AUTOGRADER_REPO_KEY=$(jq -r '.deploy_token_private_key' < config.json)
+
+if [[ "$AUTOGRADER_REPO_KEY" != "null" ]]; then
+mkdir -p ~/.ssh
+echo "$AUTOGRADER_REPO_KEY" > ~/.ssh/autograder_deploy_key
+chmod 600 ~/.ssh/autograder_deploy_key
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/assignments_deploy_key
+
+cp ssh_config ~/.ssh/config
+
+
+# To prevent host key verification errors at runtime
+ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
+fi
+
 echo "looking for: $AUTOGRADER_REPO"
 
 git init 
