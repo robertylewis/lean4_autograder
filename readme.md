@@ -6,8 +6,6 @@ It does *not* contain the autograder itself.
 
 ## Directions for use
 
-**Temporary note:** Right now, the deploy key described in step 2 below is required for Gradescope to build the autograder, even if you are not using a private solution repo. We are working on a fix. In the meantime, you can revert to version [5387a0258b25a07b6eb6b58f3c258176010388ac](https://github.com/robertylewis/lean4_autograder/tree/5387a0258b25a07b6eb6b58f3c258176010388ac) of this project and use a corresponding version of the autograder, linked from the readme in the `lean4-autograder-main` repo.
-
 1. Edit `config.json` in this repository.
    * `autograder_repo`: a GitHub repository containing a Lean project, with the context for assignment submissions, including a stencil file located at `assignment_path`. Submissions will be compiled with this repository available as an import. Example: [`brown-cs22/CS22-Lean-2024`](https://github.com/brown-cs22/CS22-Lean-2024).
    * `assignment_path`: the path within `public_repo` of the assignment stencil or solutions. Example: `BrownCs22/Homework/Homework01.lean`. So, the assignment stencil for this assignment lives in the [brown-cs22/CS22-Lean-2024](https://github.com/brown-cs22/CS22-Lean-2024) repository, at this path.
