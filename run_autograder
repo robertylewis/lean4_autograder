@@ -4,8 +4,10 @@ set -ex
 
 cd /autograder/source
 
+if [[ -e ~/.ssh/autograder_deploy_key ]]; then
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/autograder_deploy_key
+fi
 
 MAIN_BRANCH=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
 

@@ -27,12 +27,20 @@ cp ssh_config ~/.ssh/config
 # To prevent host key verification errors at runtime
 ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
+
+# In this case we connect via ssh
+GIT_URL="git@github.com:"
+
+else 
+# in this case we connect via https
+GIT_URL="https://github.com/"
+
 fi
 
 echo "looking for: $AUTOGRADER_REPO"
 
 git init 
-git remote add origin "git@github.com:$AUTOGRADER_REPO.git"
+git remote add origin "$GIT_URL$AUTOGRADER_REPO.git"
 git fetch origin 
 MAIN_BRANCH=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
 git reset --hard origin/$MAIN_BRANCH
