@@ -20,7 +20,7 @@ It does *not* contain the autograder itself.
    If you do not plan to autograde definitions, you can skip this step.
   
 3. Run `make_autograder.sh` to create a zip file.
-4. Upload this zip file to gradescope.
+4. Upload this zip file to gradescope. The autograder must be configured to use the maximum available CPU resources.
 
 ## Autograder architecture
 
