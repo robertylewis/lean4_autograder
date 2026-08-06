@@ -10,7 +10,7 @@ It does *not* contain the autograder itself.
    * `autograder_repo`: a GitHub repository containing a Lean project, with the context for assignment submissions, including a stencil file located at `assignment_path`. Submissions will be compiled with this repository available as an import. Example: [`brown-cs22/CS22-Lean-2024`](https://github.com/brown-cs22/CS22-Lean-2024).
    * `assignment_path`: the path within `public_repo` of the assignment stencil or solutions. Example: `BrownCs22/Homework/Homework01.lean`. So, the assignment stencil for this assignment lives in the [brown-cs22/CS22-Lean-2024](https://github.com/brown-cs22/CS22-Lean-2024) repository, at this path.
   
-     This project must have [an autograder](https://github.com/robertylewis/cs22-lean-autograder/) as a Lake dependency: e.g. the line `require autograder from git "https://github.com/robertylewis/cs22-lean-autograder" @ "f3c4a3eb22cb9377c696085c4c09fcb7e6e7e9ba"` in its lakefile.
+     This project must have [an autograder](https://github.com/robertylewis/lean4-autograder-main/) as a Lake dependency: e.g. the line `require autograder from git "https://github.com/robertylewis/lean4-autograder-main" @ "f3c4a3eb22cb9377c696085c4c09fcb7e6e7e9ba"` in its lakefile.
 2. In order to grade definitions, the autograder needs reference solutions. The file at `assignment_path` should include these solutions. In this case `autograder_repo` is likely private. You can give the autograder access to a private solutions repo by adding a [deploy key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys#deploy-keys) to your private repository.
   
    1.  On a local computer, run `ssh-keygen -t ed25519 -C "your_email@example.com"`. This will generate a public and private key.
@@ -25,7 +25,7 @@ It does *not* contain the autograder itself.
 ## Autograder architecture
 
 To repeat, this repository does not contain the autograder itself.
-This is a wrapper for the [autograder](https://github.com/robertylewis/cs22-lean-autograder/) Lean package.
+This is a wrapper for the [autograder](https://github.com/robertylewis/lean4-autograder-main/) Lean package.
 
 Submissions are independently verified using
 [Comparator](https://github.com/leanprover/comparator), which rebuilds the
