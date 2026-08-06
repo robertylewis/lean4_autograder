@@ -10,6 +10,16 @@ curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf 
 
 apt-get install -y python3 python3-pip python3-dev
 
+# The autograder verifies submissions with Comparator
+# (https://github.com/leanprover/comparator), which sandboxes the untrusted
+# submission's build using landrun (https://github.com/Zouuup/landrun). Build
+# landrun from source and put it on PATH; Comparator falls back to searching
+# PATH for it (or COMPARATOR_LANDRUN can point at a specific binary instead).
+apt-get install -y golang-go git
+git clone https://github.com/Zouuup/landrun /tmp/landrun
+(cd /tmp/landrun && go build -o /usr/local/bin/landrun ./cmd/landrun)
+rm -rf /tmp/landrun
+
 cd /autograder/source
 
 AUTOGRADER_REPO=$(jq -r '.autograder_repo' < config.json)
@@ -51,4 +61,5 @@ git reset --hard origin/$MAIN_BRANCH
 
 # ~/.elan/bin/lake clean
 
-~/.elan/bin/lake build autograder AutograderTests 
+~/.elan/bin/lake build autograder AutograderTests comparator lean4export
+

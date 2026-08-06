@@ -26,3 +26,19 @@ It does *not* contain the autograder itself.
 
 To repeat, this repository does not contain the autograder itself.
 This is a wrapper for the [autograder](https://github.com/robertylewis/cs22-lean-autograder/) Lean package.
+
+Submissions are independently verified using
+[Comparator](https://github.com/leanprover/comparator), which rebuilds the
+submission in a sandboxed subprocess (via
+[landrun](https://github.com/Zouuup/landrun)), re-serializes it through
+`lean4export`, and replays it through the Lean kernel, rather than trusting
+the autograder's own in-process elaboration of the submission. `setup.sh`
+builds `landrun` from source and installs it to `/usr/local/bin`, and builds
+the `comparator`/`lean4export` binaries alongside the autograder itself.
+
+Note: Comparator's own README recommends wrapping its invocation in
+`systemd-run` to fully close one specific known `landrun` vulnerability. This
+setup does not do that, relying instead on Gradescope's own per-submission
+container isolation as the outer security boundary; `systemd-run` may not
+even be usable inside a Gradescope container. If you need the stronger
+guarantee, see Comparator's README for the `systemd-run` invocation.
