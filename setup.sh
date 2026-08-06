@@ -15,7 +15,19 @@ apt-get install -y python3 python3-pip python3-dev
 # submission's build using landrun (https://github.com/Zouuup/landrun). Build
 # landrun from source and put it on PATH; Comparator falls back to searching
 # PATH for it (or COMPARATOR_LANDRUN can point at a specific binary instead).
-apt-get install -y golang-go git
+#
+# landrun's go.mod requires Go 1.24+; the `golang-go` apt package on Gradescope's
+# Ubuntu 22.04 base image is far too old to build it (and too old to even parse a
+# go.mod requiring a version that new), so install a current Go toolchain directly
+# from go.dev rather than via apt.
+apt-get install -y git
+GO_VERSION=$(curl -sSL https://go.dev/VERSION?m=text | head -1)
+curl -sSL "https://go.dev/dl/${GO_VERSION}.linux-amd64.tar.gz" -o /tmp/go.tar.gz
+rm -rf /usr/local/go
+tar -C /usr/local -xzf /tmp/go.tar.gz
+rm /tmp/go.tar.gz
+export PATH="$PATH:/usr/local/go/bin"
+
 git clone https://github.com/Zouuup/landrun /tmp/landrun
 (cd /tmp/landrun && go build -o /usr/local/bin/landrun ./cmd/landrun)
 rm -rf /tmp/landrun
